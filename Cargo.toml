@@ -1,4 +1,4 @@
-cargo-features = ["edition"]
+cargo-features = ["edition", "rename-dependency"]
 
 [package]
 name = "futures-test"
@@ -7,5 +7,20 @@ authors = ["jon"]
 edition = "2018"
 
 [dependencies]
-futures-preview = { git = "https://github.com/rust-lang-nursery/futures-rs", branch = "master" }
 hyper = "0.12.7"
+tokio = "0.1.7"
+hyper-tls = "0.3.0"
+tokio-threadpool = "0.1.5"
+
+[dependencies.futures-preview]
+git = "https://github.com/rust-lang-nursery/futures-rs"
+branch = "master"
+features = ["tokio-compat"]
+
+[dependencies.futures01]
+package = "futures"
+version = "0.1"
+
+
+[patch.crates-io]
+futures-preview = { git = "https://github.com/rust-lang-nursery/futures-rs", branch = "master" }
